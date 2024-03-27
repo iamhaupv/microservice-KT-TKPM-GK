@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+      routes:
+        - id: BookService
+          uri: http://localhost:6969
+          predicates:
+            - Path=/api/v1/**
+        - id: UserService
+          uri: http://localhost:6970
+          predicates:
+            - Path=/api/v2/**
